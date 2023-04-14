@@ -59,7 +59,7 @@ public class TradingDiploma : MonoBehaviour
 
                 BitCoin bitCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<BitCoin>();
                 bitCoin.BaseValue += value;
-                bitCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                bitCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StopAnimation();
             }
             else if (cardanoCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
@@ -67,7 +67,7 @@ public class TradingDiploma : MonoBehaviour
                 CardanoCoin CaradanoCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<CardanoCoin>();
 
                 CaradanoCoin.BaseValue += value;
-                CaradanoCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                CaradanoCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StopAnimation();
 
             }
@@ -76,7 +76,7 @@ public class TradingDiploma : MonoBehaviour
                 ETHCoin eTHCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<ETHCoin>();
 
                 eTHCoin.BaseValue += value;
-                eTHCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                eTHCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StopAnimation();
 
             }
@@ -84,7 +84,7 @@ public class TradingDiploma : MonoBehaviour
 
                 StableCoin stableCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<StableCoin>();
                 stableCoin.BaseValue += value;
-                stableCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                stableCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StopAnimation();
             }
 

@@ -8,25 +8,25 @@ public class TelegramScammer : MonoBehaviour
      private int baseValue;
     [SerializeField] private int stolenValue;
 
-    private int vitalickSymboleIndex = 15;
-    private int fomoBuyerIndex = 8;
-    private int HodlerIndex = 9;
+    private int vitalickSymboleIndex = 29;
+    private int fomoBuyerIndex = 20;
+    private int HodlerIndex = 22;
     private void OnEnable() {
 
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+      
         
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
     private void OnDisable() {
 
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+      
        
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
 
         // Undefine;
     }
@@ -40,24 +40,24 @@ public class TelegramScammer : MonoBehaviour
                     FomoBuyer fomoBuyer = GridManager.instance.list_ActivateInHirachy[i].GetComponent<FomoBuyer>();
                     fomoBuyer.BaseValue -= 1;
                     stolenValue += 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
                 else if (HodlerIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     Hodler hodler = GridManager.instance.list_ActivateInHirachy[i].GetComponent<Hodler>();
                     hodler.BaseValue -= 1;
                     stolenValue += 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
                 else if (vitalickSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     Vitalick vitalick = GridManager.instance.list_ActivateInHirachy[i].GetComponent<Vitalick>();
                     vitalick.BaseValue -= 1;
                     stolenValue += 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
 
                 }
 

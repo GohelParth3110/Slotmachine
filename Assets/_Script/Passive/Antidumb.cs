@@ -34,7 +34,7 @@ public class Antidumb : MonoBehaviour
                     BitCoin bitCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<BitCoin>();
                     if (bitCoin.BaseValue<1) {
                         bitCoin.BaseValue = 1;
-                        bitCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                        bitCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                         StopAnimation();
                     }
                     
@@ -45,7 +45,7 @@ public class Antidumb : MonoBehaviour
 
                 if (CaradnoCoin.BaseValue < 1) {
                     CaradnoCoin.BaseValue = 1;
-                    CaradnoCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                    CaradnoCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                     StopAnimation();
                 }
 
@@ -56,7 +56,7 @@ public class Antidumb : MonoBehaviour
 
                     if (eTHCoin.BaseValue <1) {
                         eTHCoin.BaseValue = 1;
-                        eTHCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                        eTHCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                         StopAnimation();
                     }
 
@@ -66,7 +66,7 @@ public class Antidumb : MonoBehaviour
                     StableCoin stableCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<StableCoin>();
                     if (stableCoin.BaseValue <1) {
                         stableCoin.BaseValue = 1;
-                        stableCoin.GetComponentInParent<RawMotion>().StopAnimation();
+                        stableCoin.GetComponentInParent<RawMotion>().VFXForMOtion();
                         StopAnimation();
                     }
                 }

@@ -10,14 +10,9 @@ public class DeadCat : MonoBehaviour
     private int ethCoinSymboleIndex = 3;
     private int stableCoinIndex = 4;
 
-    private void OnEnable() {
-        GridManager.instance.SetSpawnObj += Instance_SetSpawnObj;
-    }
-    private void OnDisable() {
-        GridManager.instance.SetSpawnObj -= Instance_SetSpawnObj;
-    }
+   
 
-    private void Instance_SetSpawnObj(object sender, System.EventArgs e) {
+    public void Instance_SetSpawnObj() {
         int index = Random.Range(0, 100);
         if (index<persantageOfFurspawn) {
             GridManager.instance.OnExtraFurAdd();
@@ -37,29 +32,29 @@ public class DeadCat : MonoBehaviour
 
                 BitCoin bitCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<BitCoin>();
                 bitCoin.BaseValue *= 2;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (cardanoCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 CardanoCoin cardanoCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<CardanoCoin>();
                 cardanoCoin.BaseValue *= 2;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (ethCoinSymboleIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 ETHCoin eTHCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<ETHCoin>();
                 eTHCoin.BaseValue *= 2;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (stableCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 StableCoin stableCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<StableCoin>();
                 stableCoin.BaseValue *= 2;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
 
 

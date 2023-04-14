@@ -18,18 +18,17 @@ public class AccreditedInvestor : MonoBehaviour
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
         BaseValue = baseValue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
 
 
     private void OnDisable() {
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+     
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
         count = 0;
         list_Coin.Clear();
         AdjucentData adjucentData = GetComponentInParent<AdjucentData>();
@@ -72,16 +71,16 @@ public class AccreditedInvestor : MonoBehaviour
         if (list_Coin.Count%2==0) {
             BaseValue += 4 * (list_Coin.Count / 2);
             for (int i = 0; i < list_Coin.Count; i++) {
-                list_Coin[i].GetComponentInParent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                list_Coin[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StartCoroutine(delayDestroy(list_Coin[i].gameObject));
             }
         }
         else {
             BaseValue += (4 * (list_Coin.Count-1))/2;
             for (int i = 0; i < list_Coin.Count-1; i++) {
-                list_Coin[i].GetComponentInParent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                list_Coin[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 StartCoroutine(delayDestroy(list_Coin[i].gameObject));
             }
             list_Coin[list_Coin.Count - 1].GetComponent<SymbolData>().enabled = true;

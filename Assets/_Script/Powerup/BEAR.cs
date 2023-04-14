@@ -33,29 +33,29 @@ public class BEAR : MonoBehaviour
 
                     BitCoin bitCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<BitCoin>();
                     bitCoin.BaseValue -= 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (cardanoCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                 CardanoCoin caradanoCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<CardanoCoin>();
                 caradanoCoin.BaseValue -= 1;
-                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (ethCoinSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     ETHCoin eTHCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<ETHCoin>();
                     eTHCoin.BaseValue -= 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (stableCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     StableCoin stableCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<StableCoin>();
                     stableCoin.BaseValue -= 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
 
             

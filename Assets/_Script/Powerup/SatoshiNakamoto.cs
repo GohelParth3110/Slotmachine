@@ -13,20 +13,17 @@ public class SatoshiNakamoto : MonoBehaviour
 
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
-     
+      
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
   
     private void OnDisable() {
 
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
-      
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
 
     }
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
 
        
         for (int i = 0; i < GridManager.instance.list_ActivateInHirachy.Count; i++) {
@@ -45,11 +42,14 @@ public class SatoshiNakamoto : MonoBehaviour
                 if (vitalickSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                    
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                     Vitalick vitalick = GridManager.instance.list_ActivateInHirachy[i].GetComponent<Vitalick>();
-
+                   
                     vitalick.IsStopRunning = true;
+                   
+
+                    
                     StartCoroutine(delayDestroy(vitalick.gameObject));
                    
                     CoinHandler.instance.SpawnCoin(10, GridManager.instance.list_ActivateInHirachy[i].
@@ -77,8 +77,8 @@ public class SatoshiNakamoto : MonoBehaviour
                     BitCoin bitCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<BitCoin>();
                     bitCoin.BaseValue *= 3;
                    
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
             
         }

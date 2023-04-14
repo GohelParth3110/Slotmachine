@@ -14,18 +14,18 @@ public class Escrow : MonoBehaviour {
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
         BaseValue = baseValue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+     
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
    
 
     private void OnDisable() {
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+      
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
 
         AdjucentData adjucentData = transform.GetComponentInParent<AdjucentData>();
         for (int i = 0; i < adjucentData.all_Adjucent.Length; i++) {
@@ -40,32 +40,32 @@ public class Escrow : MonoBehaviour {
                 BitCoin bitCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<BitCoin>();
                 IncreasedPeminateBaseValue(1);
                 StartCoroutine(delayDestroy(bitCoin.gameObject));
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (cardanoCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 CardanoCoin cardanoCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<CardanoCoin>();
                 IncreasedPeminateBaseValue(1);
                 StartCoroutine(delayDestroy(cardanoCoin.gameObject));
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (ethCoinSymboleIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 ETHCoin eTHCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<ETHCoin>();
                 IncreasedPeminateBaseValue(1);
                 StartCoroutine(delayDestroy(eTHCoin.gameObject));
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (stableCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 StableCoin stableCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<StableCoin>();
                 IncreasedPeminateBaseValue(1);
                 StartCoroutine(delayDestroy(stableCoin.gameObject));
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             // Scammer
         }

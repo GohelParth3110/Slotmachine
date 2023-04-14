@@ -32,12 +32,8 @@ public class RawMotion : MonoBehaviour
         Ismove = true;
         Sequence SEQ = DOTween.Sequence();
         startPostion = transform.position.y;
-        SEQ.Append(transform.DOLocalMoveY(startPostion - 0.2f, flt_StopAnimationTime)).SetEase(Ease.Linear).
-           Append(transform.DOLocalMoveY(startPostion + 0.2f, flt_StopAnimationTime).SetLoops(3, LoopType.Yoyo)).SetEase(Ease.Linear).
-          AppendInterval(flt_StopAnimationTime).AppendCallback(StartAnimation);
 
-
-
+        StartAnimation();
 
     }
 
@@ -48,8 +44,8 @@ public class RawMotion : MonoBehaviour
         transform.DOMoveY(postion, moveSpeed).SetEase(Ease.Linear).OnComplete(ResetBackground);
     }
 
-    public void StopAnimation() {
-
+    public void VFXForMOtion() {
+        
         Sequence SEQ = DOTween.Sequence();
 
         SEQ.Append(transform.DOLocalMoveY(startPostion - 0.2f, flt_StopAnimationTime)).SetEase(Ease.Linear).
@@ -61,9 +57,8 @@ public class RawMotion : MonoBehaviour
     private void StopSlotmachine() {
         Sequence SEQ = DOTween.Sequence();
 
-        SEQ.Append(transform.DOLocalMoveY(startPostion - 0.2f, flt_StopAnimationTime)).SetEase(Ease.Linear).
-            Append(transform.DOLocalMoveY(startPostion + 0.2f, flt_StopAnimationTime).SetLoops(3, LoopType.Yoyo)).SetEase(Ease.Linear)
-            .Append(transform.DOLocalMoveY(startPostion, flt_StopAnimationTime).SetEase(Ease.Linear)).
+        SEQ.Append(transform.DOLocalMoveY(startPostion - 0.4f, flt_StopAnimationTime)).SetEase(Ease.Linear)
+            .Append(transform.DOLocalMoveY(startPostion, 0.5f).SetEase(Ease.Linear)).
             AppendInterval(flt_StopAnimationTime).AppendCallback(StopCallBack);
 
 

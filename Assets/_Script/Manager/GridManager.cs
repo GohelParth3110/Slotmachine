@@ -10,20 +10,20 @@ public class GridManager : MonoBehaviour
     public delegate void EventHandler(object sender, EventArgs e);
     public event EventHandler SetPassive;
     public event EventHandler setAntiDumb;
-    public event EventHandler SetSpawnObj;
     public event EventHandler SetCoinSetup;
-    public event EventHandler SetDestroyeObj;
     public static GridManager instance;
     public SynergySetup synergySetup;
-   // [SerializeField] private GameObject[] all_Item;
+    public SpawnObjSetup spawnObjSetup;
+    public SetDestroySetup setDestroySetUp;
     [SerializeField] private  Transform[] all_Postion;
     [SerializeField] private GameObject[] all_GameStartObj;
     [SerializeField] private List<GameObject> list_OfActivateGameObject;
     [SerializeField] private List<GameObject> list_ThisWaveObject;
     public List<GameObject> list_ActivateInHirachy;
-    List<Action> functions = new List<Action>();
+    List<Action> sysnergyFinction = new List<Action>();
+    List<Action> SetSpawnObjFunction = new List<Action>();
+    List<Action> SetDestroyeObjFunction = new List<Action>();
     [SerializeField] List<SymbolData> list_Symboldat = new List<SymbolData>();
-    [SerializeField] private List<GameObject> list_Shorting;
     [SerializeField]private List<Transform> list_AllPostion;
     [SerializeField] private GameObject transform_Store;
     [SerializeField] private GameObject ethCoin;
@@ -37,7 +37,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private float flt_DealyAntiDumb;
     [SerializeField] private float flt_DelayOfCoinSpwn;
     [SerializeField] private float flt_DealyOfCoinAnimation;
-    public bool isLoanActivated;
     public bool isCrossChainActiveted;
     private string tag_CrossChain = "CrossChain";
 
@@ -181,8 +180,8 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < gameObjects.Count; i++) {
             for (int j = i + 1; j < gameObjects.Count; j++) {
 
-                if (gameObjects[i].GetComponent<SymbolData>().mySymbolIndex >
-                        gameObjects[j].GetComponent<SymbolData>().mySymbolIndex) {
+                if (gameObjects[i].GetComponentInParent<GridSymbolData>().currentSymbolIndex >
+                        gameObjects[j].GetComponentInParent<GridSymbolData>().currentSymbolIndex) {
 
                     GameObject swap;
 
@@ -203,8 +202,12 @@ public class GridManager : MonoBehaviour
             list_Symboldat.Add(gameObjects[i].GetComponent<SymbolData>());
            
         }
-        functions.Clear();
-        functions = synergySetup.SetListOfAction(functions, list_Symboldat);
+        SetSpawnObjFunction.Clear();
+        SetSpawnObjFunction = spawnObjSetup.SetListOfAction(SetSpawnObjFunction, list_Symboldat);
+        SetDestroyeObjFunction.Clear();
+        SetDestroyeObjFunction = setDestroySetUp.SetListOfAction(SetDestroyeObjFunction, list_Symboldat);
+        sysnergyFinction.Clear();
+        sysnergyFinction = synergySetup.SetListOfAction(sysnergyFinction, list_Symboldat);
         RawHandler.SetAllRawMotion();
     }
 
@@ -236,9 +239,16 @@ public class GridManager : MonoBehaviour
     private IEnumerator DealayOfSpawnObjEvent(float delayOfSpawnObj) {
         yield return new WaitForSeconds(delayOfSpawnObj);
         float time = 0;
-        if (SetSpawnObj != null) {
-            SetSpawnObj.Invoke(this, EventArgs.Empty);
-            time = flt_DealayOfSpawnObj;
+        if (SetSpawnObjFunction.Count != 0) {
+
+            time = flt_DelayOfSynergyEvent;
+            for (int i = 0; i < SetSpawnObjFunction.Count; i++) {
+                SetSpawnObjFunction[i]();
+                if (RawHandler.isChecking) {
+                    yield return new WaitForSeconds(time);
+                }
+            }
+
         }
         else {
             time = 0;
@@ -249,9 +259,16 @@ public class GridManager : MonoBehaviour
     private IEnumerator DelayOfDestroyEvent(float time) {
         yield return new WaitForSeconds(time);
         float Time;
-        if (SetDestroyeObj !=null) {
-            SetDestroyeObj.Invoke(this, EventArgs.Empty);
+        if (SetDestroyeObjFunction.Count != 0) {
+
             Time = flt_DelayOfSynergyEvent;
+            for (int i = 0; i < SetDestroyeObjFunction.Count; i++) {
+                SetDestroyeObjFunction[i]();
+                if (RawHandler.isChecking) {
+                    yield return new WaitForSeconds(time);
+                }
+            }
+
         }
         else {
             Time = 0;
@@ -266,11 +283,16 @@ public class GridManager : MonoBehaviour
 
        
 
-        if (functions.Count != 0) {
+        if (sysnergyFinction.Count != 0) {
            
             Time = flt_DelayOfSynergyEvent;
-            for (int i = 0; i < functions.Count; i++) {
-                functions[i]();
+            for (int i = 0; i < sysnergyFinction.Count; i++) {
+                sysnergyFinction[i]();
+
+                if (RawHandler.isChecking) {
+                    yield return new WaitForSeconds(time);
+                }
+               
             }
             
         }
@@ -391,7 +413,7 @@ public class GridManager : MonoBehaviour
                 current.transform.SetParent(all_Postion[i]);
                 current.transform.localPosition = Vector3.zero;
                 current.gameObject.SetActive(true);
-               all_Postion[i].GetComponent<RawMotion>().StopAnimation();
+               all_Postion[i].GetComponent<RawMotion>().VFXForMOtion();
                
                 break;
             }
@@ -414,7 +436,7 @@ public class GridManager : MonoBehaviour
                 current.transform.SetParent(all_Postion[i]);
                 current.transform.localPosition = Vector3.zero;
                 current.gameObject.SetActive(true);
-                all_Postion[i].GetComponent<RawMotion>().StopAnimation();
+                all_Postion[i].GetComponent<RawMotion>().VFXForMOtion();
                
                 break;
             }
@@ -438,7 +460,7 @@ public class GridManager : MonoBehaviour
                 current.transform.SetParent(all_Postion[i]);
                 current.transform.localPosition = Vector3.zero;
                 current.gameObject.SetActive(true);
-                all_Postion[i].GetComponent<RawMotion>().StopAnimation();
+                all_Postion[i].GetComponent<RawMotion>().VFXForMOtion();
 
                 break;
             }
@@ -451,10 +473,13 @@ public class GridManager : MonoBehaviour
         if (list_ThisWaveObject != null) {
             list_ThisWaveObject.Remove(Current);
         }
-        list_Symboldat.Remove(Current.GetComponent<SymbolData>());
-        list_ActivateInHirachy.Remove(Current);
-        list_OfActivateGameObject.Remove(Current);
-        Destroy(Current);
+        if (Current !=null) {
+            list_Symboldat.Remove(Current.GetComponent<SymbolData>());
+            list_ActivateInHirachy.Remove(Current);
+            list_OfActivateGameObject.Remove(Current);
+            Destroy(Current);
+        }
+       
     }
 
 

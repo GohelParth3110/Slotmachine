@@ -6,7 +6,7 @@ public class RawHandler : MonoBehaviour
 {
     [SerializeField] private RawMotion[] all_RawMotions;
     [SerializeField] private bool[] all_Ismove;
-    [SerializeField] private bool isChecking;
+    public bool isChecking;
 
     //<summary>
     //when GridManager Set All data And Spin Btn Click At that Time SlotMachine Start

@@ -34,15 +34,15 @@ public class KYCPaper : MonoBehaviour
 
                     FomoBuyer fomoBuyer = GridManager.instance.list_ActivateInHirachy[i].GetComponent<FomoBuyer>();
                     fomoBuyer.BaseValue += 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
                 else if (HodlerIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     Hodler hodler = GridManager.instance.list_ActivateInHirachy[i].GetComponent<Hodler>();
                     hodler.BaseValue += 1;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
                
 

@@ -10,16 +10,16 @@ public class Xpowerup : MonoBehaviour
 
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+       
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
     private void OnDisable() {
 
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+       
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, EventArgs e) {
+    public void Instance_SetDestroyeObj() {
         baseValue = 0;
         AdjucentData adjucentData = GetComponentInParent<AdjucentData>();
         for (int i = 0; i < adjucentData.all_Adjucent.Length; i++) {

@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class UIPassive : MonoBehaviour
 {
     [SerializeField] private GameObject Content;
+    [SerializeField] private Image[] all_Img;
     [SerializeField]private List<GameObject> all_PassiveThisWave;
     [SerializeField] private List<GameObject> list_ActiveInScreen;
     [SerializeField] private TextMeshProUGUI[] all_TxtPassive;
@@ -58,7 +59,9 @@ public class UIPassive : MonoBehaviour
 
             all_TxtPassive[i].text = all_PassiveThisWave[Index].transform.name;
             list_ActiveInScreen.Add(all_PassiveThisWave[Index]);
+            all_Img[i].sprite = all_PassiveThisWave[Index].GetComponentInChildren<Image>().sprite;
             all_PassiveThisWave.RemoveAt(Index);
+           
 
         }
     }

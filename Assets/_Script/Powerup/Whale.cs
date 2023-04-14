@@ -17,17 +17,17 @@ public class Whale : MonoBehaviour
     private void OnEnable() {
 
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+       
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
    
     private void OnDisable() {
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+      
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
         extraValue = 0;
         for (int i = 0; i < GridManager.instance.list_ActivateInHirachy.Count; i++) {
 
@@ -39,8 +39,8 @@ public class Whale : MonoBehaviour
                     extraValue++;
                     bitCoin.IsStopRunning = true;
                     StartCoroutine(DestroyObject(bitCoin.gameObject));
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
                 else if (cardanoCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
@@ -49,8 +49,8 @@ public class Whale : MonoBehaviour
                     extraValue++;
                     cardanoCoin.IsStopRunning = true;
                     StartCoroutine(DestroyObject(cardanoCoin.gameObject));
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
 
                 }
                 else if (ethCoinSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
@@ -60,8 +60,8 @@ public class Whale : MonoBehaviour
                     extraValue++;
                     eTHCoin.IsStopRunning = true;
                     StartCoroutine(DestroyObject(eTHCoin.gameObject));
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
 
                 }
                 else if (stableCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
@@ -70,8 +70,8 @@ public class Whale : MonoBehaviour
                     extraValue++;
                     stableCoin.IsStopRunning = true;
                     StartCoroutine(DestroyObject(stableCoin.gameObject));
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
 
             

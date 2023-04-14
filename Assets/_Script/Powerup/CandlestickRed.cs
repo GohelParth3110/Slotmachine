@@ -38,29 +38,29 @@ public class CandlestickRed : MonoBehaviour
 
                 BitCoin bitCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<BitCoin>();
                 bitCoin.BaseValue -= 1;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (cardanoCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 CardanoCoin cardanoCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<CardanoCoin>();
                 cardanoCoin.BaseValue -= 1;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (ethCoinSymboleIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 ETHCoin eTHCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<ETHCoin>();
                 eTHCoin.BaseValue -= 1;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (stableCoinIndex == adjucentData.all_Adjucent[i].GetComponentInChildren<SymbolData>().mySymbolIndex) {
 
                 StableCoin stableCoin = adjucentData.all_Adjucent[i].GetComponentInChildren<StableCoin>();
                 stableCoin.BaseValue -= 1;
-                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().StopAnimation();
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
+                adjucentData.all_Adjucent[i].GetComponent<RawMotion>().VFXForMOtion();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
             }
 
 

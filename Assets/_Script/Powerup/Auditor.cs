@@ -8,51 +8,50 @@ public class Auditor : MonoBehaviour
     [SerializeField] private SymbolData symbolData;
     public int BaseValue { get; set; }
     private int baseValue;
-    private int cloudMiningIndex;
-    private int telegramScammerIndex;
-    private int crainNotRightIndex;
-    private int fomoBuyerIndex;
+    private int cloudMiningIndex = 14;
+    private int telegramScammerIndex = 28;
+    private int crainNotRightIndex = 29;
+    private int fomoBuyerIndex = 20;
 
     private void OnEnable() {
         baseValue = symbolData.mySymbolIndex;
-        BaseValue = baseValue;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+        BaseValue = baseValue;  
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
     
 
     private void OnDisable() {
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+    
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public   void Instance_SetDestroyeObj() {
         for (int i = 0; i < GridManager.instance.list_ActivateInHirachy.Count; i++) {
             if (cloudMiningIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
                 IncreasingPerminateValue(1);
                 StartCoroutine(DealyDestroy(GridManager.instance.list_ActivateInHirachy[i].gameObject));
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
-                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
+                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
 
             }
             else if (telegramScammerIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
                 IncreasingPerminateValue(1);
                 StartCoroutine(DealyDestroy(GridManager.instance.list_ActivateInHirachy[i].gameObject));
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
-                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
+                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (crainNotRightIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
                 IncreasingPerminateValue(1);
                 StartCoroutine(DealyDestroy(GridManager.instance.list_ActivateInHirachy[i].gameObject));
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
-                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
+                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
             }
             else if (fomoBuyerIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
                 IncreasingPerminateValue(1);
                 StartCoroutine(DealyDestroy(GridManager.instance.list_ActivateInHirachy[i].gameObject));
-                transform.GetComponentInParent<RawMotion>().StopAnimation();
-                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
+                transform.GetComponentInParent<RawMotion>().VFXForMOtion();
+                GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
             }
         }
     }

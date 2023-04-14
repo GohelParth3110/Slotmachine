@@ -19,20 +19,18 @@ public class Vitalick : MonoBehaviour
         baseValue = symbolData.Basevalue;
         IsStopRunning = false;
         BaseValue = baseValue;
-        GridManager.instance.SetSpawnObj += Instance_SetSpawnObj;
-     
+          
        GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
    
     private void OnDisable() {
-
-        GridManager.instance.SetSpawnObj -= Instance_SetSpawnObj;
+             
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
       
     }
 
-    private void Instance_SetSpawnObj(object sender, EventArgs e) {
+    public void Instance_SetSpawnObj() {
 
         int index = Random.Range(0, 100);
         if (index< persenatgeofSpawnETh) {
@@ -55,9 +53,12 @@ public class Vitalick : MonoBehaviour
                  if (ethCoinSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
 
                     ETHCoin eTHCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<ETHCoin>();
-                    eTHCoin.BaseValue *= 2;
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    if (eTHCoin != null) {
+                        eTHCoin.BaseValue *= 2;
+                    }
+                   
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                 }
 
             }

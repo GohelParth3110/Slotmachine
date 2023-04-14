@@ -15,56 +15,54 @@ public class CloudMining : MonoBehaviour
 
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetSpawnObj += Instance_SetSpawnObj;
-        GridManager.instance.SetDestroyeObj += Instance_SetDestroyeObj;
+       
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
 
    
     private void OnDisable() {
 
-        GridManager.instance.SetSpawnObj -= Instance_SetSpawnObj;
-        GridManager.instance.SetDestroyeObj -= Instance_SetDestroyeObj;
+       
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetSpawnObj(object sender, System.EventArgs e) {
+    public void Instance_SetSpawnObj() {
         int index = Random.Range(0, 100);
         if (index < persantageOFSpawnBitCoin) {
             GridManager.instance.OneExtraBitCoinAddCoin();
         }
     }
-    private void Instance_SetDestroyeObj(object sender, System.EventArgs e) {
+    public void Instance_SetDestroyeObj() {
         int index = Random.Range(0, 100);
         if (index<persantageOfDestroyAllCoin) {
 
             for (int i = 0; i < GridManager.instance.list_ActivateInHirachy.Count; i++) {
 
                 if (bitcoinSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                     BitCoin bitcoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<BitCoin>();
                     bitcoin.IsStopRunning = true;
                     StartCoroutine(delayDestroy(bitcoin.gameObject));
 
                 }
                 else if (cardanoCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                     CardanoCoin cardanoCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<CardanoCoin>();
                     cardanoCoin.IsStopRunning = true;
                     StartCoroutine(delayDestroy(cardanoCoin.gameObject));
                 }
                 else if (ethCoinSymboleIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                     ETHCoin ethcoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<ETHCoin>();
                     ethcoin.IsStopRunning = true;
                     StartCoroutine(delayDestroy(ethcoin.gameObject));
                 }
                 else if (stableCoinIndex == GridManager.instance.list_ActivateInHirachy[i].GetComponent<SymbolData>().mySymbolIndex) {
-                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().StopAnimation();
-                    transform.GetComponentInParent<RawMotion>().StopAnimation();
+                    GridManager.instance.list_ActivateInHirachy[i].GetComponentInParent<RawMotion>().VFXForMOtion();
+                    transform.GetComponentInParent<RawMotion>().VFXForMOtion();
                     StableCoin stableCoin = GridManager.instance.list_ActivateInHirachy[i].GetComponent<StableCoin>();
                     stableCoin.IsStopRunning = true;
                     StartCoroutine(delayDestroy(stableCoin.gameObject));

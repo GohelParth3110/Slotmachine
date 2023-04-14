@@ -11,18 +11,16 @@ public class ASIC : MonoBehaviour
 
     private void OnEnable() {
         baseValue = symbolData.Basevalue;
-        GridManager.instance.SetSpawnObj += Instance_SetSpawnObj;
         GridManager.instance.SetCoinSetup += Instance_SetCoinSetup;
     }
     private void OnDisable() {
 
-        GridManager.instance.SetSpawnObj -= Instance_SetSpawnObj;
+       
         GridManager.instance.SetCoinSetup -= Instance_SetCoinSetup;
     }
 
-    private void Instance_SetSpawnObj(object sender, System.EventArgs e) {
+    public void Instance_SetSpawnObj() {
       
-        
         int index = Random.Range(0, 100);
         if (index < persantageOfSpawnBitcoin) {
             GridManager.instance.OneExtraBitCoinAddCoin();
