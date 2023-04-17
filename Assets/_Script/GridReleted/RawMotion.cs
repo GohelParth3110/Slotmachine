@@ -57,11 +57,9 @@ public class RawMotion : MonoBehaviour
     private void StopSlotmachine() {
         Sequence SEQ = DOTween.Sequence();
 
-        SEQ.Append(transform.DOLocalMoveY(startPostion - 0.4f, flt_StopAnimationTime)).SetEase(Ease.Linear)
+        SEQ.Append(transform.DOLocalMoveY(startPostion - 0.4f, 0.2f)).SetEase(Ease.Linear)
             .Append(transform.DOLocalMoveY(startPostion, 0.5f).SetEase(Ease.Linear)).
             AppendInterval(flt_StopAnimationTime).AppendCallback(StopCallBack);
-
-
     }
    
     private void StopCallBack() {

@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySymbolIndex: 16
   spriteRenderer: {fileID: 0}
-  Basevalue: 1
+  Basevalue: 0
 --- !u!65 &6112508360741554013
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Vitalick : MonoBehaviour
     public bool IsStopRunning { get; set; }
     [SerializeField] private int persenatgeofSpawnETh;
 
-    private int ethCoinSymboleIndex = 2;
+    private int ethCoinSymboleIndex = 3;
 
     private void OnEnable() {
 

@@ -244,9 +244,9 @@ public class GridManager : MonoBehaviour
             time = flt_DelayOfSynergyEvent;
             for (int i = 0; i < SetSpawnObjFunction.Count; i++) {
                 SetSpawnObjFunction[i]();
-                if (RawHandler.isChecking) {
+              
                     yield return new WaitForSeconds(time);
-                }
+               
             }
 
         }
@@ -264,9 +264,8 @@ public class GridManager : MonoBehaviour
             Time = flt_DelayOfSynergyEvent;
             for (int i = 0; i < SetDestroyeObjFunction.Count; i++) {
                 SetDestroyeObjFunction[i]();
-                if (RawHandler.isChecking) {
-                    yield return new WaitForSeconds(time);
-                }
+                 yield return new WaitForSeconds(time);
+                
             }
 
         }
@@ -287,12 +286,12 @@ public class GridManager : MonoBehaviour
            
             Time = flt_DelayOfSynergyEvent;
             for (int i = 0; i < sysnergyFinction.Count; i++) {
-                sysnergyFinction[i]();
-
-                if (RawHandler.isChecking) {
-                    yield return new WaitForSeconds(time);
-                }
                
+                sysnergyFinction[i]();
+               
+               yield return new WaitForSeconds(0.5f);
+              
+                      
             }
             
         }

@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbolData: {fileID: 3827629215535576718}
-  count: 0
+  count: 10
   CoinZeroCount: 3
