@@ -9,10 +9,8 @@ using UnityEngine.UI;
 
 public class UIPowerup : MonoBehaviour {
 
-    [SerializeField] private List<SymbolData> list_ThisTimePowerup;
-    [SerializeField] private TextMeshProUGUI[] txt_PowerupName;
-    [SerializeField] private TextMeshProUGUI[] txt_BaseValue;
-    [SerializeField] private Image[] img_PowerUp;
+   
+  
     [SerializeField] private TextMeshProUGUI txt_RentCoin;
     [SerializeField] private TextMeshProUGUI txt_RemaingValue;
     [SerializeField] private TextMeshProUGUI txt_CurrentSpin;
@@ -23,6 +21,8 @@ public class UIPowerup : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI txt_NextReloadValue;
     [SerializeField] private int reloadValue;
     [SerializeField] private int currentReloadValue;
+    [SerializeField]private List<GameObject> list_ThisTimePowerup;
+    [SerializeField] private GameObject[] all_PowerUpPenal;
 
     public bool IsLevelChangeTime { get; set; }
 
@@ -87,28 +87,21 @@ public class UIPowerup : MonoBehaviour {
 
     private void SetAllPowerUp() {
 
-
         list_ThisTimePowerup.Clear();
-        all_CurrentPowerupIndex.Clear();
-
-        for (int i = 0; i < PowerupManager.instance.all_SymbolData.Length; i++) {
-
-            list_ThisTimePowerup.Add(PowerupManager.instance.all_SymbolData[i]);
+        for (int i = 0; i < all_PowerUpPenal.Length; i++) {
+            if (all_PowerUpPenal[i].gameObject.activeSelf) {
+                all_PowerUpPenal[i].gameObject.SetActive(false);
+            }
         }
-
-        for (int i = 0; i < txt_PowerupName.Length; i++) {
+        for (int i = 0; i < all_PowerUpPenal.Length; i++) {
+            list_ThisTimePowerup.Add(all_PowerUpPenal[i]);
+        }
+        for (int i = 0; i < 4; i++) {
 
             int index = Random.Range(0, list_ThisTimePowerup.Count);
-            all_CurrentPowerupIndex.Add(list_ThisTimePowerup[index].GetComponent<SymbolData>().mySymbolIndex);
-            txt_PowerupName[i].text = list_ThisTimePowerup[index].transform.name;
-            txt_BaseValue[i].text = "BaseValue " + list_ThisTimePowerup[index].Basevalue;
 
-            if (list_ThisTimePowerup[index].spriteRenderer != null) {
-                img_PowerUp[i].sprite = list_ThisTimePowerup[index].spriteRenderer.sprite;
-            }
-            
+            list_ThisTimePowerup[index].gameObject.SetActive(true);
             list_ThisTimePowerup.RemoveAt(index);
-
         }
 
     }
@@ -116,13 +109,8 @@ public class UIPowerup : MonoBehaviour {
     public void OnClickOnPowerbtnClick(int index) {
 
       
-        int currentIndex = 0;
-        for (int i = 0; i < PowerupManager.instance.all_SymbolData.Length; i++) {
-            if (all_CurrentPowerupIndex[index] == PowerupManager.instance.all_SymbolData[i].mySymbolIndex) {
-                currentIndex = i;
-            }
-        }
-        GridManager.instance.EveryWaveSpawnOneObj(PowerupManager.instance.all_SymbolData[currentIndex].gameObject);
+       
+        GridManager.instance.EveryWaveSpawnOneObj(PowerupManager.instance.all_SymbolData[index].gameObject);
         SetPowerup();
        
         if (IsLevelChangeTime) {

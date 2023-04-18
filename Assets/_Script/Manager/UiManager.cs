@@ -43,6 +43,7 @@ public class UiManager : MonoBehaviour
         GetUIPassiveScreen = uiPassive;
         GetUiPayRentScreen = uiPayRentSceen;
         GetUiCoinPanelScreen = uiCoinPanel;
+        GameManager.instance.StartGame();
     }
 
 

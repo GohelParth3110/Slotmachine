@@ -9,10 +9,9 @@ using Random = UnityEngine.Random;
 public class UIPassive : MonoBehaviour
 {
     [SerializeField] private GameObject Content;
-    [SerializeField] private Image[] all_Img;
-    [SerializeField]private List<GameObject> all_PassiveThisWave;
-    [SerializeField] private List<GameObject> list_ActiveInScreen;
-    [SerializeField] private TextMeshProUGUI[] all_TxtPassive;
+    [SerializeField] private GameObject[] all_Panel;
+    [SerializeField] private List<GameObject> list_GameObject;
+   
     [SerializeField] private Button btn_SkipBtn;
     [SerializeField] private Button btn_ReloadBtn;
     [SerializeField] private int currentReloadValue;
@@ -44,30 +43,33 @@ public class UIPassive : MonoBehaviour
 
     private void SetPowerupPanel() {
 
-        all_PassiveThisWave.Clear();
+        list_GameObject.Clear();
+        for (int i = 0; i < all_Panel.Length; i++) {
+            if (all_Panel[i].gameObject.activeSelf) {
+                all_Panel[i].gameObject.SetActive(false);
+            }
+        }
 
-        for (int i = 0; i < PowerupManager.instance.all_Passive.Length; i++) {
+        for (int i = 0; i <all_Panel.Length; i++) {
 
-            all_PassiveThisWave.Add(PowerupManager.instance.all_Passive[i]);
+            list_GameObject.Add(all_Panel[i]);
 
         }
 
-        list_ActiveInScreen.Clear();
-        for (int i = 0; i < all_TxtPassive.Length; i++) {
+        
+        for (int i = 0; i < 4; i++) {
 
-          int  Index = Random.Range(0, all_PassiveThisWave.Count);
+          int  Index = Random.Range(0, list_GameObject.Count);
 
-            all_TxtPassive[i].text = all_PassiveThisWave[Index].transform.name;
-            list_ActiveInScreen.Add(all_PassiveThisWave[Index]);
-            all_Img[i].sprite = all_PassiveThisWave[Index].GetComponentInChildren<Image>().sprite;
-            all_PassiveThisWave.RemoveAt(Index);
+            list_GameObject[i].gameObject.SetActive(true);
+            list_GameObject.RemoveAt(Index);
            
 
         }
     }
     public void OnClickOnPassiveBtnClick(int index) {
 
-       GameObject current =  Instantiate(list_ActiveInScreen[index], transform.position, transform.rotation, Content.transform);
+       GameObject current =  Instantiate(PowerupManager.instance.all_Passive[index], transform.position, transform.rotation, Content.transform);
 
         PowerupManager.instance.list_ActivePessiveInHirechy.Add(current);
         if (current.TryGetComponent<DexHandling>(out DexHandling dex)) {

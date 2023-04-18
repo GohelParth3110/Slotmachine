@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
 
         instance = this;
     }
-    private void Start() {
+    public void StartGame() {
         Score = 1;
         txt_Score.text = Score.ToString();
+        Debug.Log("hii");
         UiManager.instance.GetUiHomeScreen.gameObject.SetActive(true);
     }
 
